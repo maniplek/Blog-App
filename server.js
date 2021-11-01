@@ -1,11 +1,16 @@
 const _ = require('lodash');
 //import { Express } from 'express';
 const express = require('express');
+const morgan = require('morgan');
 
 const app = express();
 
 //register view engine 
 app.set('view engine', 'ejs');
+
+//middleware & static files
+app.use(express.static('public'));
+app.use(morgan('dev'));
 
 app.get('/',(req,res)=>{
     const blogs = [
