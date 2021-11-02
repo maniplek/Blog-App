@@ -57,7 +57,17 @@ app.get('/blogs/:id', (req,res)=>{
          res.render('details' , {blog: result , title: 'Blog Details'});
      })
      .catch(err => console.log(err));
-})
+});
+app.delete('/blogs/:id', (req,res)=>{
+    const id = req.params.id;
+    Blog.findByIdAndDelete(id)
+     .then(result =>{
+         res.json({ redirect: '/blogs'});
+     }) 
+     .catch(err =>{
+         console.log(err);
+     })
+});
 
 app.get('/about', (req,res)=>{
     res.render('about',{title: "About"});
